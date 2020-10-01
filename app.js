@@ -5,6 +5,8 @@ require("dotenv").config();
 
 const app = express();
 
+const port = process.env.SERVER_PORT || 3000
+
 app.use(bp.json());
 app.use(cors());
 
@@ -12,6 +14,6 @@ app.get("/", (req, res) => {
   res.json("Hello PIXELIUKAI");
 });
 
-app.listen(process.env.SERVER_PORT, () =>
-  console.log("Server is working " + process.env.SERVER_PORT + " port")
+app.listen(port, () =>
+  console.log(`Server is working " + process.env.SERVER_PORT + ${port}`)
 );
