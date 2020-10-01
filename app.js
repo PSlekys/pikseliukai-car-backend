@@ -13,6 +13,4 @@ app.get("/", (req, res) => {
   res.json("Welcome to PIX-DRIVE");
 });
 
-app.listen(port, () =>
-  console.log("Server is working " + process.env.SERVER_PORT + " port")
-);
+app.listen(port, () => console.log("Server is working " + port + " port"));
