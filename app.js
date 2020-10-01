@@ -26,7 +26,7 @@ connection.connect((err) => {
     if (err) console.log(err);
     if (result.length === 0) {
       connection.query(
-        "CREATE TABLE ride (id INT AUTO_INCREMENT PRIMARY KEY, to TEXT, from TEXT, datetime DATETIME, description TEXT, fullname TEXT, phone INT, type BOOLEAN)",
+        "CREATE TABLE ride (id INT AUTO_INCREMENT PRIMARY KEY, destination TEXT, location TEXT, datetime DATETIME, description TEXT, fullname TEXT, phone INT, type BOOLEAN)",
         (err, result) => {
           if (err) throw err;
           console.log("RIDE database created");
