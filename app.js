@@ -35,6 +35,7 @@ connection.connect((err) => {
       console.log("DB RIDE already exists, connected");
     }
   });
+});
 
 app.get("/", (req, res) => {
   res.json("Welcome to PIX-DRIVE");
