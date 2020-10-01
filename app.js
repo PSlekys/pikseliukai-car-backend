@@ -11,9 +11,9 @@ app.use(bp.json());
 app.use(cors());
 
 app.get("/", (req, res) => {
-  res.json("Hello PIXELIUKAI");
+  res.json("welcome to Pix-Drive");
 });
 
 app.listen(port, () =>
-  console.log(`Server is working " + process.env.SERVER_PORT + ${port}`)
+  console.log(`Server is working at + ${port}`)
 );
