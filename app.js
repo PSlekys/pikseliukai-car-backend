@@ -53,7 +53,7 @@ app.get("/passenger", (req, res) => {
 app.post("/", (req, res) => {
   if (req.body.location && req.body.destination) {
     connection.query(
-      `INSERT INTO ride (destination, location, datetime, description, name, phone, type) VALUES (${req.body.to}','${req.body.from}','${req.body.datetime}','${req.body.description}','${req.body.name}','${req.body.phone}', '${req.body.type}')`,
+      `INSERT INTO ride (destination, location, datetime, description, fullname, phone, type) VALUES (${req.body.to}','${req.body.from}','${req.body.datetime}','${req.body.description}','${req.body.name}','${req.body.phone}', '${req.body.type}')`,
       (err, result) => {
         if (err) {
           console.log(err);
