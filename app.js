@@ -39,10 +39,25 @@ connection.connect((err) => {
 });
 
 app.get("/driver", (req, res) => {
-  connection.query(`SELECT * FROM ride WHERE type = 'driver' `, (err, result) => {
-    if (err) console.log(err);
-    res.json(result);
-  });
+  connection.query(
+    `SELECT * FROM ride WHERE type = 'driver' `,
+    (err, result) => {
+      if (err) console.log(err);
+      res.json(result);
+    }
+  );
+});
+
+app.get("/driver/:id", (req, res) => {
+  if (req.params.id) {
+    connection.query(
+      `SELECT * FROM ride WHERE id = '${req.params.id}' `,
+      (err, result) => {
+        if (err) console.log(err);
+        res.json(result);
+      }
+    );
+  }
 });
 
 app.get("/passenger", (req, res) => {
@@ -52,6 +67,18 @@ app.get("/passenger", (req, res) => {
       res.json(result);
     }
   );
+});
+
+app.get("/passenger/:id", (req, res) => {
+  if (req.params.id) {
+    connection.query(
+      `SELECT * FROM ride WHERE id = '${req.params.id}' `,
+      (err, result) => {
+        if (err) console.log(err);
+        res.json(result);
+      }
+    );
+  }
 });
 
 app.post("/passenger", (req, res) => {
