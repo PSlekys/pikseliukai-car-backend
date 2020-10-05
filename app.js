@@ -39,14 +39,15 @@ connection.connect((err) => {
 });
 
 app.get("/driver", (req, res) => {
-  connection.query(`SELECT * FROM ride WHERE type="true"`, (err, result) =>
+  connection.query(`SELECT * FROM ride WHERE type = "driver"`, (err, result) =>
     res.json(result)
   );
 });
 
 app.get("/passenger", (req, res) => {
-  connection.query(`SELECT * FROM ride WHERE type="false"`, (err, result) =>
-    res.json(result)
+  connection.query(
+    `SELECT * FROM ride WHERE type = "passenger"`,
+    (err, result) => res.json(result)
   );
 });
 
