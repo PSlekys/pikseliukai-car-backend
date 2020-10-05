@@ -48,7 +48,7 @@ app.get("/driver", (req, res) => {
   );
 });
 
-app.get("/driver/:id", (req, res) => {
+app.get("/driverDetails/:id", (req, res) => {
   if (req.params.id) {
     connection.query(
       `SELECT * FROM ride WHERE id = '${req.params.id}' `,
@@ -69,7 +69,7 @@ app.get("/passenger", (req, res) => {
   );
 });
 
-app.get("/passenger/:id", (req, res) => {
+app.get("/passengerDetails/:id", (req, res) => {
   if (req.params.id) {
     connection.query(
       `SELECT * FROM ride WHERE id = '${req.params.id}' `,
