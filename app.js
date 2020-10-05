@@ -39,15 +39,18 @@ connection.connect((err) => {
 });
 
 app.get("/driver", (req, res) => {
-  connection.query(`SELECT * FROM ride WHERE type = "driver"`, (err, result) =>
-    res.json(result)
-  );
+  connection.query(`SELECT * FROM ride WHERE type = 'driver' `, (err, result) => {
+    if (err) console.log(err);
+    res.json(result);
+  });
 });
 
 app.get("/passenger", (req, res) => {
   connection.query(
-    `SELECT * FROM ride WHERE type = "passenger"`,
-    (err, result) => res.json(result)
+    `SELECT * FROM ride WHERE type = 'passenger'`,
+    (err, result) => {
+      res.json(result);
+    }
   );
 });
 
@@ -87,4 +90,4 @@ app.post("/driver", (req, res) => {
   }
 });
 
-app.listen(port, () => console.log("Server is working on" + port + " port"));
+app.listen(port, () => console.log("Server is working on " + port + " port"));
