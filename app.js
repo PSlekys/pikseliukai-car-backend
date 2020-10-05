@@ -39,10 +39,13 @@ connection.connect((err) => {
 });
 
 app.get("/driver", (req, res) => {
-  connection.query(`SELECT * FROM ride WHERE type = 'driver' `, (err, result) => {
-    if (err) console.log(err);
-    res.json(result);
-  });
+  connection.query(
+    `SELECT * FROM ride WHERE type = 'driver' `,
+    (err, result) => {
+      if (err) console.log(err);
+      res.json(result);
+    }
+  );
 });
 
 app.get("/passenger", (req, res) => {
@@ -57,7 +60,7 @@ app.get("/passenger", (req, res) => {
 app.post("/passenger", (req, res) => {
   if (req.body.location && req.body.destination) {
     connection.query(
-      `INSERT INTO ride (destination, location, datetime, description, fullname, phone, type) VALUES ('${req.body.destination}','${req.body.location}','${req.body.datetime}','${req.body.description}','${req.body.fullname}','${req.body.phone}', '${req.body.type}')`,
+      `INSERT INTO ride (destination, location, datetime, description, fullname, phone, type) VALUES ('${req.body.destination}','${req.body.location}','${req.body.datetime}','${req.body.description}','${req.body.fullname}','${req.body.phone}', 'passenger')`,
       (err, result) => {
         if (err) {
           console.log(err);
@@ -75,7 +78,7 @@ app.post("/passenger", (req, res) => {
 app.post("/driver", (req, res) => {
   if (req.body.location && req.body.destination) {
     connection.query(
-      `INSERT INTO ride (destination, location, datetime, description, fullname, phone, type) VALUES ('${req.body.destination}','${req.body.location}','${req.body.datetime}','${req.body.description}','${req.body.fullname}','${req.body.phone}', '${req.body.type}')`,
+      `INSERT INTO ride (destination, location, datetime, description, fullname, phone, type) VALUES ('${req.body.destination}','${req.body.location}','${req.body.datetime}','${req.body.description}','${req.body.fullname}','${req.body.phone}', 'driver')`,
       (err, result) => {
         if (err) {
           console.log(err);
