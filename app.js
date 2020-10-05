@@ -46,6 +46,7 @@ app.get("/driver", (req, res) => {
       res.json(result);
     }
   );
+});
 
 app.get("/driverDetails/:id", (req, res) => {
   if (req.params.id) {
