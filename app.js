@@ -51,10 +51,21 @@ app.get("/passenger", (req, res) => {
 });
 
 app.post("/", (req, res) => {
-  connection.query(
-    `INSERT INTO ride (destination, location, datetime, description, name, phone, type) VALUES (${req.body.to}','${req.body.from}','${req.body.datetime}','${req.body.description}','${req.body.name}','${req.body.phone}', '${req.body.type}')`,
-    (err, result) => res.json(result)
-  );
+  if (req.body.location && req.body.destination) {
+    connection.query(
+      `INSERT INTO ride (destination, location, datetime, description, fullname, phone, type) VALUES ('${req.body.destination}','${req.body.location}','${req.body.datetime}','${req.body.description}','${req.body.fullname}','${req.body.phone}', '${req.body.type}')`,
+      (err, result) => {
+        if (err) {
+          console.log(err);
+          res.status(400).send("error in task");
+        } else {
+          res.json(result);
+        }
+      }
+    );
+  } else {
+    res.status(400).send("error adding info");
+  }
 });
 
 app.listen(port, () => console.log("Server is working on" + port + " port"));
