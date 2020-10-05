@@ -26,7 +26,7 @@ connection.connect((err) => {
     if (err) console.log(err);
     if (result.length === 0) {
       connection.query(
-        "CREATE TABLE ride (id INT AUTO_INCREMENT PRIMARY KEY, destination TEXT, location TEXT, datetime DATETIME, description TEXT, fullname TEXT, phone INT, type BOOLEAN)",
+        "CREATE TABLE ride (id INT AUTO_INCREMENT PRIMARY KEY, destination TEXT, location TEXT, datetime DATETIME, description TEXT, fullname TEXT, phone INT, type TEXT)",
         (err, result) => {
           if (err) throw err;
           console.log("RIDE database created");
@@ -50,7 +50,25 @@ app.get("/passenger", (req, res) => {
   );
 });
 
-app.post("/", (req, res) => {
+app.post("/passenger", (req, res) => {
+  if (req.body.location && req.body.destination) {
+    connection.query(
+      `INSERT INTO ride (destination, location, datetime, description, fullname, phone, type) VALUES ('${req.body.destination}','${req.body.location}','${req.body.datetime}','${req.body.description}','${req.body.fullname}','${req.body.phone}', '${req.body.type}')`,
+      (err, result) => {
+        if (err) {
+          console.log(err);
+          res.status(400).send("error in task");
+        } else {
+          res.json(result);
+        }
+      }
+    );
+  } else {
+    res.status(400).send("error adding info");
+  }
+});
+
+app.post("/driver", (req, res) => {
   if (req.body.location && req.body.destination) {
     connection.query(
       `INSERT INTO ride (destination, location, datetime, description, fullname, phone, type) VALUES ('${req.body.destination}','${req.body.location}','${req.body.datetime}','${req.body.description}','${req.body.fullname}','${req.body.phone}', '${req.body.type}')`,
